@@ -1,0 +1,25 @@
+{
+  "name": "commander-template",
+  "version": "1.0.0",
+  "description": "Template for bootstrapping CLI apps using Commander.",
+  "main": "src/app.ts",
+  "author": "viktor.nyblom@gmail.com",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./bin/app.js",
+    "dev": "ts-node ./src/app.ts",
+    "hello": "ts-node ./src/app.ts helloWorld"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.36.0",
+    "@types/node": "^20.4.10",
+    "commander": "^11.0.0",
+    "firebase-admin": "^11.10.1",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
