@@ -1,7 +1,7 @@
 import { credential } from "firebase-admin";
 import { initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
-
+import { getMessaging } from "firebase-admin/messaging";
 
 var serviceAccount = require("../credentials.json");
 
@@ -10,5 +10,6 @@ initializeApp({
 });
 
 const db = getFirestore();
+const messaging = getMessaging();
 
-export { db };
+export { db, messaging };

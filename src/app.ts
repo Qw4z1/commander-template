@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import "dotenv/config";
-import { db } from "./firebase";
-import { listAll } from "./lib";
+import { db, messaging } from "./firebase";
+import { listAll, sendPushNotification } from "./lib";
 
 const program = new Command();
 
@@ -20,6 +20,15 @@ program
   .description("Lists all documents in collection")
   .action(async (options) => {
     await listAll(options.collection, db);
+  });
+
+program
+  .command("sendMessage")
+  .requiredOption("-t, --token <string>", "Must have a user registration token")
+  .requiredOption("-b, --body <string>", "Message must have a body")
+  .option("-i, --title <string?>", "Optional title")
+  .action(async (options) => {
+    await sendPushNotification(messaging, options.token, options.body, options.title);
   });
 
 program.parse();

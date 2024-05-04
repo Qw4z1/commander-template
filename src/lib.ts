@@ -1,4 +1,5 @@
 import { randomBytes } from "crypto";
+import { Messaging } from "firebase-admin/messaging";
 
 export async function listAll(
   collectionName: string,
@@ -30,4 +31,27 @@ export function autoId(): string {
     });
   }
   return autoId;
+}
+
+export async function sendPushNotification(
+  messaging: Messaging,
+  token: string,
+  body: string,
+  title?: string
+) {
+  const message = {
+    notification: {
+      title: title,
+      body: body,
+    },
+    token: token,
+  };
+  messaging
+    .send(message)
+    .then((response) => {
+      console.log("Successfully sent message:", response);
+    })
+    .catch((error) => {
+      console.log("Error sending message:", error);
+    });
 }
